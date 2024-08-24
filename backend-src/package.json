@@ -1,0 +1,27 @@
+{
+  "name": "maps-locator",
+  "version": "1.0.0",
+  "description": "upload csv file function and google maps api",
+  "main": "server.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "node",
+    "upload",
+    "csv",
+    "mysql"
+  ],
+  "author": "Warren Xu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fast-csv": "^5.0.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.10.0",
+    "sequelize": "^6.37.3"
+  }
+}
