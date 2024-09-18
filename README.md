@@ -1,2 +1,4 @@
-This website is used to identify addresses on a google map after they are uploaded from a csv file. 
-So far, I have added functionality to upload the CSV file and view the uploaded addresses on a Google Map.
+The conflict checker is used to identify addresses visually after they are uploaded from a csv file and also see information about them, which I plan to use in helping urban planning companies determine projects they've worked on. 
+The website consists of a React.js frontend and a Node.js backend, and I used Express to enable communication between the two frameworks via HTTP and JSON requests.
+I used self-made REST APIs written in JavaScript to add functionality to upload the CSV file and view the uploaded addresses on a Google Maps using the Google Places API. In addition, I also had to make APIs for many processes such as geocoding addresses into latitude and longitude for the Google Maps API.  
+To store large amounts of data, I directed the csv data to be uploaded into a MySQL relational database.
