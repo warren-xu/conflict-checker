@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require("express");
-const cors = require("cors"); // Import cors
+const cors = require("cors");
 const app = express();
 const db = require("./models");
 const initRoutes = require("./routes/project.routes");
@@ -16,7 +16,7 @@ app.use(cors({
 initRoutes(app);
 
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {        // This process makes the database reset every time it's restarted. Can change to keep adding to it
   console.log("Drop and re-sync db.");
 });
 //db.sequelize.sync();
