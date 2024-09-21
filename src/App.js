@@ -14,12 +14,12 @@ class App extends Component {
         
           <div className="navbar-nav mr-auto">
           <li className="nav-item">
-              <Link to={"/"} className="nav-link">
+              <Link to={"/conflict-checker/"} className="nav-link">
                 Home
               </Link>
             </li>
              <li className="nav-item">
-              <Link to={"/upload"} className="nav-link">
+              <Link to={"/conflict-checker/upload"} className="nav-link">
                 Upload
               </Link>
             </li>
@@ -28,9 +28,9 @@ class App extends Component {
 
         <div className="container mt-3">
           <Routes>
-            <Route path="/conflict-checker/" element={<MapContainer/>} />
-            <Route path="/conflict-checker/projects/" element={<MapContainer/>} />
-            <Route path="/conflict-checker/upload/" element={<UploadFiles/>} />
+            <Route path="/" element={<MapContainer/>} />
+            <Route path="/projects" element={<MapContainer/>} />
+            <Route path="/upload" element={<UploadFiles/>} />
           </Routes>
         </div>
       </div>
