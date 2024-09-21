@@ -28,9 +28,9 @@ class App extends Component {
 
         <div className="container mt-3">
           <Routes>
-            <Route path="/" element={<MapContainer/>} />
-            <Route path="/projects" element={<MapContainer/>} />
-            <Route path="/upload" element={<UploadFiles/>} />
+            <Route path="/conflict-checker/" element={<MapContainer/>} />
+            <Route path="/conflict-checker/projects/" element={<MapContainer/>} />
+            <Route path="/conflict-checker/upload/" element={<UploadFiles/>} />
           </Routes>
         </div>
       </div>
