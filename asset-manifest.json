@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "//warren-xu.github.io/conflict-checker/static/css/main.ff529558.css",
-    "main.js": "//warren-xu.github.io/conflict-checker/static/js/main.22b636dd.js",
+    "main.js": "//warren-xu.github.io/conflict-checker/static/js/main.54d17c3a.js",
     "index.html": "//warren-xu.github.io/conflict-checker/index.html",
     "main.ff529558.css.map": "//warren-xu.github.io/conflict-checker/static/css/main.ff529558.css.map",
-    "main.22b636dd.js.map": "//warren-xu.github.io/conflict-checker/static/js/main.22b636dd.js.map"
+    "main.54d17c3a.js.map": "//warren-xu.github.io/conflict-checker/static/js/main.54d17c3a.js.map"
   },
   "entrypoints": [
     "static/css/main.ff529558.css",
-    "static/js/main.22b636dd.js"
+    "static/js/main.54d17c3a.js"
   ]
 }
