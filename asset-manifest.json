@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "//warren-xu.github.io/conflict-checker/static/css/main.0e1e47eb.css",
+    "main.js": "//warren-xu.github.io/conflict-checker/static/js/main.8fbaafce.js",
+    "index.html": "//warren-xu.github.io/conflict-checker/index.html",
+    "main.0e1e47eb.css.map": "//warren-xu.github.io/conflict-checker/static/css/main.0e1e47eb.css.map",
+    "main.8fbaafce.js.map": "//warren-xu.github.io/conflict-checker/static/js/main.8fbaafce.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0e1e47eb.css",
+    "static/js/main.8fbaafce.js"
+  ]
+}
