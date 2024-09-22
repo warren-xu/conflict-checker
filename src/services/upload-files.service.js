@@ -23,5 +23,6 @@ class ProjectDataService {
         return http.delete("/projects");
     } */
 }
+const myProjectDataService = new ProjectDataService();
 
-export default new ProjectDataService();
+export default myProjectDataService;

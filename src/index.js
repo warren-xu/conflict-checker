@@ -10,7 +10,7 @@ const root = createRoot(container);                   // initialize React applic
 
 
 root.render(
-  <BrowserRouter basename="/conflict-checker/">    
+  <BrowserRouter basename="/conflict-checker">    
     <App />
   </BrowserRouter>
 );

@@ -4,6 +4,7 @@ import { GoogleMap, LoadScript, Marker, InfoWindow, Autocomplete } from '@react-
 import ProjectDataService from "../services/upload-files.service";
 //import axios from 'axios';
 
+const libraries = ['places'];
 const containerStyle = {
   width: '100%',
   height: '400px',
@@ -89,7 +90,7 @@ const MapContainer = () => {
   return (
 
     <div>
-      {apiKey && (<LoadScript googleMapsApiKey={apiKey} libraries={['places']}>   
+      {apiKey && (<LoadScript googleMapsApiKey={apiKey} libraries={libraries}>   
         <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
           <input
             type="text"
