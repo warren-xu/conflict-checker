@@ -16,6 +16,9 @@ class ProjectDataService {
         }
         });
     }
+    mapsKey() {
+        return http.get("/mapskey");
+    }
     /* deleteAll() {
         return http.delete("/projects");
     } */

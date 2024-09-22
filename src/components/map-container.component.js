@@ -1,6 +1,6 @@
 // MapContainer.js
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow, Autocomplete} from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api';
 import ProjectDataService from "../services/upload-files.service";
 //import axios from 'axios';
 
@@ -19,7 +19,8 @@ const MapContainer = () => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [map, setMap] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
-  
+  const [apiKey, setApiKey] = useState('');
+
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
@@ -27,19 +28,29 @@ const MapContainer = () => {
         console.log('Response from getAll:', response); // Log response
         const addresses = response.data;
         console.log('Addresses:', addresses);
-        
+
         const results = await ProjectDataService.geocode(addresses);  // geocode them
         setMarkers(results.data);
-        
+
       } catch (error) {
         console.error('Error fetching addresses:', error);
       }
     };
+    const fetchApiKey = async () => {
+      try {
+        const response = await ProjectDataService.mapsKey();
+        const data = response.data;
+        setApiKey(data.key);
+      } catch (error) {
+        console.error("Error fetching API key: ", error)
+      }
+    }
     fetchAddresses();
+    fetchApiKey();
   }, []);   // Empty
 
   const handlePlaceSelected = (marker) => {
-    setMarkers((current) => [...current, {...marker, fromSearchBar: true}]);  // add a fromsearchbar element to differentiate the searched marker from the db markers
+    setMarkers((current) => [...current, { ...marker, fromSearchBar: true }]);  // add a fromsearchbar element to differentiate the searched marker from the db markers
     if (map) {
       map.panTo(marker.location); // Make sure marker.location is correct
       map.setZoom(16); // Zoom in on the marker
@@ -74,12 +85,12 @@ const MapContainer = () => {
       console.error("Autocomplete is not loaded yet!");
     }
   };
-  
+
   return (
 
     <div>
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries={['places']}>
-      <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
+      {apiKey && (<LoadScript googleMapsApiKey={apiKey} libraries={['places']}>   
+        <Autocomplete onLoad={onAutocompleteLoad} onPlaceChanged={onPlaceChanged}>
           <input
             type="text"
             placeholder="Search for a location"
@@ -101,9 +112,9 @@ const MapContainer = () => {
             }}
           />
         </Autocomplete>
-        
+
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onLoad={onLoad}>
-          
+
           {/* {markers.length > 0 ? markers.map((marker, index) => (
             <Marker
               key={index}
@@ -117,9 +128,9 @@ const MapContainer = () => {
               onClick={() => setSelectedMarker(marker)}
               icon={{
                 url: marker.fromSearchBar
-                 ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                 : undefined // Blue for searched marker
-                  
+                  ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                  : undefined // Blue for searched marker
+
               }}
             />
           ))}
@@ -136,6 +147,7 @@ const MapContainer = () => {
           )}
         </GoogleMap>
       </LoadScript>
+      )}
     </div>
   );
 };
