@@ -1,8 +1,7 @@
 // MapContainer.js
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Autocomplete, Marker, InfoWindow} from '@react-google-maps/api';
 import ProjectDataService from "../services/upload-files.service";
-//import axios from 'axios';
 
 const libraries = ['places'];
 const containerStyle = {
@@ -10,9 +9,9 @@ const containerStyle = {
   height: '400px',
 };
 
-const center = {
-  lat: 43.65107, // Example: Toronto latitude
-  lng: -79.347015, // Example: Toronto longitude
+const center = {          // Waterloo coordinates
+  lat: 43.4643,         
+  lng: 80.5204, 
 };
 
 const MapContainer = () => {
@@ -21,8 +20,6 @@ const MapContainer = () => {
   const [autocomplete, setAutocomplete] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [apiKey, setApiKey] = useState('');
-
-  const markerRef = useRef([]);   // pointers to markers
 
   useEffect(() => {
     const fetchAddresses = async () => {
@@ -126,8 +123,9 @@ const MapContainer = () => {
               onClick={() => setSelectedMarker(marker)}
               icon={{
                 url: marker.fromSearchBar
-                  ? "https://duet-cdn.vox-cdn.com/thumbor/0x0:1280x800/750x500/filters:focal(640x400:641x401):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/19700731/googlemaps.png" // Use your custom icon
-                  : "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Default red marker
+                  ? "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                  : "https://e7.pngegg.com/pngimages/821/305/png-clipart-purple-violet-maroon-map-marker-purple-violet-thumbnail.png", 
+                scaledSize: new window.google.maps.Size(32, 32)
               }}
             />
           ))}
