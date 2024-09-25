@@ -1,6 +1,6 @@
 // MapContainer.js
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow, Autocomplete, AdvancedMarkerElement } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, PinElement, InfoWindow, Autocomplete, AdvancedMarkerElement } from '@react-google-maps/api';
 import ProjectDataService from "../services/upload-files.service";
 //import axios from 'axios';
 
@@ -21,6 +21,9 @@ const MapContainer = () => {
   const [map, setMap] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
   const [apiKey, setApiKey] = useState('');
+  const pin = new PinElement({
+    scale: 1.5,
+  })
 
   useEffect(() => {
     const fetchAddresses = async () => {
@@ -124,10 +127,11 @@ const MapContainer = () => {
             />
           )) :  */}{markers.map((marker, index) => (
             
-            <Marker
+            <AdvancedMarkerElement
               key={index}
               position={marker.location}
               onClick={() => setSelectedMarker(marker)}
+              content={pin}
             />
           ))}
           {selectedMarker && (
