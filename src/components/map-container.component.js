@@ -1,6 +1,6 @@
 // MapContainer.js
-import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, PinElement, InfoWindow, Autocomplete, AdvancedMarkerElement } from '@react-google-maps/api';
+import React, { useState, useEffect, useRef } from 'react';
+import { GoogleMap, LoadScript, Autocomplete} from '@react-google-maps/api';
 import ProjectDataService from "../services/upload-files.service";
 //import axios from 'axios';
 
@@ -17,13 +17,11 @@ const center = {
 
 const MapContainer = () => {
   const [markers, setMarkers] = useState([]);
-  const [selectedMarker, setSelectedMarker] = useState(null);
   const [map, setMap] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
   const [apiKey, setApiKey] = useState('');
-  const pin = new PinElement({
-    scale: 1.5,
-  })
+
+  const markerRef = useRef([]);   // pointers to markers
 
   useEffect(() => {
     const fetchAddresses = async () => {
@@ -90,6 +88,22 @@ const MapContainer = () => {
     }
   };
 
+  useEffect(() => {
+    if(map) {
+      markerRef.current.forEach(marker => marker.setMap(null));   // Remove old markers
+      markerRef.current = [];     // clear pointer
+
+      markers.forEach(markerData => {
+        const marker = new window.google.maps.Marker({      // refers specifically to global google.maps object
+           position: markerData.location,
+           map: map,
+           title: markerData.address
+        });
+        markerRef.current.push(marker);       // Store the marker value
+      });
+    }
+  }, [map, markers]);
+
   return (
 
     <div>
@@ -119,19 +133,18 @@ const MapContainer = () => {
 
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onLoad={onLoad}>
 
-          {/* {markers.length > 0 ? markers.map((marker, index) => (
+          {/* {markers.map((marker, index) => (
+            
             <Marker
               key={index}
               position={marker.location}
               onClick={() => setSelectedMarker(marker)}
-            />
-          )) :  */}{markers.map((marker, index) => (
-            
-            <AdvancedMarkerElement
-              key={index}
-              position={marker.location}
-              onClick={() => setSelectedMarker(marker)}
-              content={pin}
+              icon={{
+                url: marker.fromSearchBar
+                  ? "../images/maps-icon.png"
+                  : "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Blue for searched marker
+
+              }}
             />
           ))}
           {selectedMarker && (
@@ -144,7 +157,7 @@ const MapContainer = () => {
                 <p>{selectedMarker.address}</p>
               </div>
             </InfoWindow>
-          )}
+          )} */}
         </GoogleMap>
       </LoadScript>
       )}
