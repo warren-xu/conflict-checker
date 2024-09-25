@@ -11,7 +11,7 @@ const containerStyle = {
 
 const center = {          // Waterloo coordinates
   lat: 43.4643,         
-  lng: 80.5204, 
+  lng: -80.5204, 
 };
 
 const MapContainer = () => {
@@ -121,12 +121,12 @@ const MapContainer = () => {
               key={index}
               position={marker.location}
               onClick={() => setSelectedMarker(marker)}
-              icon={{
+              /* icon={{
                 url: marker.fromSearchBar
                   ? "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
                   : "https://e7.pngegg.com/pngimages/821/305/png-clipart-purple-violet-maroon-map-marker-purple-violet-thumbnail.png", 
                 scaledSize: new window.google.maps.Size(32, 32)
-              }}
+              }} */
             />
           ))}
           {selectedMarker && (
