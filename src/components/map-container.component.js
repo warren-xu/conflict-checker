@@ -1,6 +1,6 @@
 // MapContainer.js
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow, Autocomplete, AdvancedMarkerElement } from '@react-google-maps/api';
 import ProjectDataService from "../services/upload-files.service";
 //import axios from 'axios';
 
@@ -123,13 +123,14 @@ const MapContainer = () => {
               onClick={() => setSelectedMarker(marker)}
             />
           )) :  */}{markers.map((marker, index) => (
+            
             <Marker
               key={index}
               position={marker.location}
               onClick={() => setSelectedMarker(marker)}
               icon={{
                 url: marker.fromSearchBar
-                  ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                  ? "../images/maps-icon.png"
                   : "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Blue for searched marker
 
               }}
