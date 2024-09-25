@@ -130,7 +130,7 @@ const MapContainer = () => {
               icon={{
                 url: marker.fromSearchBar
                   ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                  : undefined // Blue for searched marker
+                  : "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Blue for searched marker
 
               }}
             />
