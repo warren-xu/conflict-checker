@@ -128,12 +128,6 @@ const MapContainer = () => {
               key={index}
               position={marker.location}
               onClick={() => setSelectedMarker(marker)}
-              icon={{
-                url: marker.fromSearchBar
-                  ? "../images/maps-icon.png"
-                  : "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Blue for searched marker
-
-              }}
             />
           ))}
           {selectedMarker && (
