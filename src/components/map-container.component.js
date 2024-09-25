@@ -1,6 +1,6 @@
 // MapContainer.js
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleMap, LoadScript, Autocomplete} from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Autocomplete, Marker, InfoWindow} from '@react-google-maps/api';
 import ProjectDataService from "../services/upload-files.service";
 //import axios from 'axios';
 
@@ -19,6 +19,7 @@ const MapContainer = () => {
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState(null);
   const [apiKey, setApiKey] = useState('');
 
   const markerRef = useRef([]);   // pointers to markers
@@ -88,22 +89,6 @@ const MapContainer = () => {
     }
   };
 
-  useEffect(() => {
-    if(map) {
-      markerRef.current.forEach(marker => marker.setMap(null));   // Remove old markers
-      markerRef.current = [];     // clear pointer
-
-      markers.forEach(markerData => {
-        const marker = new window.google.maps.Marker({      // refers specifically to global google.maps object
-           position: markerData.location,
-           map: map,
-           title: markerData.address
-        });
-        markerRef.current.push(marker);       // Store the marker value
-      });
-    }
-  }, [map, markers]);
-
   return (
 
     <div>
@@ -133,7 +118,7 @@ const MapContainer = () => {
 
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onLoad={onLoad}>
 
-          {/* {markers.map((marker, index) => (
+          {markers.map((marker, index) => (
             
             <Marker
               key={index}
@@ -141,9 +126,8 @@ const MapContainer = () => {
               onClick={() => setSelectedMarker(marker)}
               icon={{
                 url: marker.fromSearchBar
-                  ? "../images/maps-icon.png"
-                  : "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Blue for searched marker
-
+                  ? "https://duet-cdn.vox-cdn.com/thumbor/0x0:1280x800/750x500/filters:focal(640x400:641x401):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/19700731/googlemaps.png" // Use your custom icon
+                  : "http://maps.google.com/mapfiles/ms/icons/red-dot.png" // Default red marker
               }}
             />
           ))}
@@ -157,7 +141,7 @@ const MapContainer = () => {
                 <p>{selectedMarker.address}</p>
               </div>
             </InfoWindow>
-          )} */}
+          )}
         </GoogleMap>
       </LoadScript>
       )}
